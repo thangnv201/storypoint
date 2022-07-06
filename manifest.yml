@@ -1,0 +1,25 @@
+modules:
+  jira:globalPage:
+    - key: story-point-hello-world
+      function: main
+      title: story-point
+  trigger:
+    - key: issue-creation-trigger
+      events:
+        - avi:jira:created:issue
+        - avi:jira:updated:issue
+      function: issue-trigger-func
+  function:
+    - key: main
+      handler: index.run
+    - key: issue-trigger-func
+      handler: jira.issueCreationTrigger
+app:
+  id: ari:cloud:ecosystem::app/c65c1846-b5ef-4e87-9f6a-df903542f92d
+permissions:
+  scopes:
+    - read:jira-work
+  external:
+    fetch:
+      backend:
+        - woven-handbook-352309.el.r.appspot.com
